@@ -1,14 +1,14 @@
 #include "all_includes.h"
 
 
-string orcs_names = "Orcs.txt"; // path to file with names orcs
-string goblins_names = "Goblins.txt"; // path to file with names orcs
+string file_orcs_names = "Orcs.txt"; // path to file with names orcs
+string file_goblins_names = "Goblins.txt"; // path to file with names orcs
 
 ifstream orcs; // for read from "Orcs.txt"
 ifstream goblins; // for read from "Goblins.txt"
 
-vector<string> orc_names; // dynamic array for orcs
-vector<string> goblin_names; // dynamic array for goblins 
+vector<string> orcs_names; // dynamic array for orcs
+vector<string> goblins_names; // dynamic array for goblins 
 
 //Text Animation
 void slowWrite(string s) {
@@ -79,18 +79,18 @@ public:
 };
 
 int main() {
-	orcs.open(orcs_names); // Open file with name Orcs.txt
+	orcs.open(file_orcs_names); // Open file with name Orcs.txt
 	string s;
 	if (orcs.is_open()) {
 		while (getline(orcs,s)) {
-			orc_names.push_back(s); // добавление имени в конец вектора
+			orcs_names.push_back(s); // добавление имени в конец вектора
 		}
 	}
 	s = "";
-	goblins.open(goblins_names); // Open file with name Goblins.txt
+	goblins.open(file_goblins_names); // Open file with name Goblins.txt
 	if (goblins.is_open()) {
 		while (getline(goblins, s)) {
-			goblin_names.push_back(s); // add in dynamic array for goblins.
+			goblins_names.push_back(s); // add in dynamic array for goblins.
 		}
 	}
 	
@@ -126,7 +126,7 @@ int main() {
 				if (change == 6) {
 					int index_name_goblin = 1 + rand() % 15; // рандом от 1 числа до 15 (имя)
 
-					Goblin* goblin = new Goblin(goblin_names[index_name_goblin]);
+					Goblin* goblin = new Goblin(goblins_names[index_name_goblin]);
 					cout << "You met a character: \"" << goblin->Name << "\"" << "(Goblin)" << endl;
 					cout << goblin->Name << " attacked you.\nYour health is now: ";
 					character->Health -= goblin->Attack();
@@ -161,7 +161,7 @@ int main() {
 				if (change == 5) {
 					int index_name_orc = 1 + rand() % 15; // рандом от 1 числа до 15 (имя)
 
-					Orc* orc = new Orc(orc_names[index_name_orc]);
+					Orc* orc = new Orc(orcs_names[index_name_orc]);
 					cout << "You met a character: \"" << orc->Name << "\"" << "(Orc)" << endl;
 					cout << orc->Name << " attacked you.\nYour health is now: ";
 					character->Health -= orc->Attack();
